@@ -1,0 +1,33 @@
+"Section","param","param","","","","","","Extra GUI command","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Type","param","param","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","adaptive_cmd","default_cmd","logical_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","filter_cmd","na_cmd","param"
+"Key","epoch_id","number_epochs","temporal_median_filter","temporal_median_filter_size","median_filter","median_filter_iterations","median_filter_size","edge_detection","edge_detection_thresholds","pcl_median_filter","pcl_outliers_filter","pcl_weighted_average_filter","gauss_filter","gauss_filter_iterations","gauss_filter_size","gauss_filter_std_space","bilateral_filter","bilateral_filter_iterations","bilateral_filter_size","bilateral_filter_std_space","bilateral_filter_std_range","jointbilateral_filter","jointbilateral_filter_iterations","jointbilateral_filter_size","jointbilateral_filter_std_space","jointbilateral_filter_std_range","guided_filter","guided_filter_iterations","guided_filter_size","guided_filter_std_range","wavelet_GraceVet_filter","","","","morphological_filter","morphological_filter_size","l0_gradient_filter","masked_median_filter","masked_median_filter_iterations","masked_median_filter_size","wiener_filter","wiener_filter_size","wiener_filter_balance","wiener_filter_psf","",""
+"Argument Format","","","x; 0: disable
+1: enable","x; int value","x; 0: disable
+1: enable","x; int value","x; int value","x; 0: disable
+1: enable","x; int value (cm)","x; 0: disable
+1: enable","x; 0: disable
+1: enable","x; 0: disable
+1: enable","x; 0: disable
+1: enable","x; int value","x; int value","x; float value","x; 0: disable
+1: enable","X; int value","X; int value","x: float value","x: float value","x; 0: disable
+1: enable","x; int value","x; int value","x: float value","x: float value","x; 0: disable
+1: enable","x; int value","x; int value","x: float value","x; 0: disable
+1: enable","","","","x; 0: disable
+1: enable","x; int value","x; 0: disable
+1: enable","x; 0: disable
+1: enable","x; int value","x; int value","x; 0: disable
+1: enable","x; int value","x: float value","X:string","",""
+"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","0","1","0","4","1","3","3","0","10","0","0","0","0","1","15","0","0","1","-1","1.8","1.8","0","1","-1","1.8","1.8","0","1","3","0.00001","1","","","","0","1","0","0","3","3","0","15","1.1","gaussian","",""
+"Value","1","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","2","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","3","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","1","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","4","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","5","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","6","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","7","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Value","8","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"Command Group","","","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","","","NonServer","","","","","NonServer","","","","","","","","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","NonServer","","","",""
+"Description","","","Default 0","Default 10","Default 1","Default 3","Default 3","Default 0","Default 100","Default 1","Default 1","Default 1","Default 0","Default 3","Default 10","Default 1","Default 0","Default 0","Negative value allowed","","","Default 0","","Negative value allowed","","","Default 0","","","","","","","","Default 1","Default 1","Default 1","Default 1","Default 3","Default 3","Default 1","Default 1","","","",""

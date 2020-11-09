@@ -1,0 +1,310 @@
+,If first column of a row is empty; entire row will be ignored. ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Section,Oyla Parameters,,,,,Image acquisition parameters,,,,Settings Commands,,,,,,,,,,Extra GUI command,,,,Settings Commands,,,,,,Calibration  and correction commands,,,Settings Commands,,,,Image acquisition commands,,,,,,,,Calibration  and correction commands,,,,Extra GUI command,,,,,,,,,Calibration  and correction commands,,,,,,,,,,,,,,,,,,,Logging Commands,,,,,,,,,Extra GUI command,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Settings Commands,,,,,,,,,,,,,,,,,,,Temporal filter commands,,,,,
+Type,param,param,param,param,param,param,param,param,param,param,param,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,logical_cmd,filter_cmd,filter_cmd,filter_cmd,filter_cmd,filter_cmd,filter_cmd,filter_cmd,filter_cmd,filter_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,default_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,na_cmd,adaptive_cmd,na_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd,adaptive_cmd
+Key,chip_id,camera_version,epoch_id,number_epochs,number_frames_epoch,imaging_type,imaging_mode,enableCompensations,enablePreheat,enableVerticalBinning,enableHorizontalBinning,enablePiDelay,setROI,setIntegrationTime2D,setIntegrationTime3D,setIntegrationTime3DHDR,setMinAmplitude,SelectShutterMode,setModulationFrequency,range_max,range_min,vertical_flip,horizontal_flip,enableAdcOverflow,enableDefaultOffset,enableImageCorrection,enableSaturation,setABS,setOffset,correctAmbientLight,correctDRNU,correctTemperature,loadConfig,enableDualMGX,enableHDR,enableIllumination,getBWSorted,getDCSSorted,getDistanceAndAmplitudeSorted,getDistanceSorted,getAmplitudeSorted,setPruNDCS,startVideo,stopVideo,r x,w 11 x y,"w ae 04
+w 73 01",w x y,edge_detection,edge_detection_thresholds,gauss_filter,gauss_filter_iterations,gauss_filter_iterations1,gauss_filter1,median_filter,median_filter_iterations,median_filter_size,calibrateDRNU,calibrateGrayscale,correctGrayscaleGain,correctGrayscaleOffset,getSpeedOfLight,hideDRNU,isAmbientLightCorrectionEnabled,isDRNUAvailable,isGrayscaleCorrectionAvailable,isTemperatureCorrectionEnabled,loadTemperatureDRNU,renewDRNU,setAmbientLightFactor,setDRNUAverage,setDRNUDelay,setDRNUDiffTemp,setSpeedOfLight,setTempCoef,showDRNU,log_amplitude,log_CSV,log_distance,log_filename,log_filtered_distance,log_LSB,log_numberOfPictures,log_path,log_PNG,FPN,pc_filter,pc_filter_iterations,pixel_interpolation,calibrateFlim,correctFlimGain,correctFlimOffset,enableArgCheck,enableImaging,extClkGen,filterMode,flim,FLIMGetStep,FLIMSetFlashDelay,FLIMSetFlashWidth,FLIMSetRepetitions,FLIMSetT1,FLIMSetT2,FLIMSetT3,FLIMSetT4,FLIMSetTREP,getCalibrationTypeForFreqIdx,getDCSTOFAndGrayscaleSorted,getImagingTime,getKalmanTempK,isFLIM,isFlimCorrectionAvailable,nloopFilter,print,setAddArgMax,setAddArgMin,setAddArgThreshold,setKalmanTempK,setKalmanThreshold2,setPreheatTemp,test,tof,dumpAllRegisters,getAveragedTemperature,getBadPixels,getChipInfo,getIcVersion,getMinAmplitude,getModulationFrequencies,getOffset,getPartVersion,getTemperature,searchBadPixels,selectMode,selectPolynomial,setHysteresis,setImageAveraging,setImageDifferenceThreshold,setImageProcessing,setRowReduction,version,Kalman,setKalmanK,setKalmanKdiff,setKalmanNumCheck,setKalmanQ,setKalmanThreshold
+Argument Format,x; Number,String,,,,String,String,,,"x; 0: disable
+1: enable",,,tLx bRx tLy bRy,"x; us, 0...1000000",,,"x; LSB, 0...5000","x; Index: 0, 1, 2","x; Number, 0...5",x; int value in m ,,"x; 0: disable
+1: enable",,,,,,,x; cm: 0... max. dist.,"x; 0: enable
+1: enable","x; 0: disable
+2: enable","x; 0: disable
+1: enable","x; 0: Grayscale 
+1: TOF","x; 0: disable
+1: enable",,,,,,,,"x; Index: 0, 1, 2, 3",,,ADDR,"ADDR, VAL",,"ADDR, VAL","x; 0: disable
+1: enable",x; int value cm,"x; 0: disable
+1: enable",x; int value,x; int value,"x; 0: disable
+1: enable","x; 0: disable
+1: enable",x; int value,x; int value,,"x; 1: saves bright image
+0: saves DSNU","x; 0: disable
+1: enable","x; 0: disable
+1: enable",,,,,,,,xxxx; 0.1 mm / step,x; int value,"xx;  Number, 0..1000","xxx; ms, 0..1000","x.x; C, 0..1000",x; Number double,"x.x; cm/K, 0.0...10.0",,,,,,,,,,,"x; 0: disable
+1: enable","x; 0: disable
+1: enable",x; int value,"x; 0: disable
+1: enable",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"x; 0: SIN
+1: PN","x1 x2;  x1 indexLSFR
+x2 indexPolynomi-
+al","x; LSB, 0 ... min.
+amp.","x; Number 0, 1, 2...",x; LSB,x; Number: 1 or 2,"x; Index: 0, 1, 2, 3",,"x; 0: disable
+1: enable simple filter
+type
+2: enable
+3: enable","x.x; Number, 0..1000.00","x.x; Number, 0..1000.00",x; Int Number,x; Floating point number,xx; LSB
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Value,1,espros,0,1,50,Dist_Ampl,Std,1,1,0,0,1,4 323 6 245,100,2500,10,200,0,1,10,0.5,1,1,1,0,0,1,0,0,1,2,0,,,,,,,,,,,,,,,,,0,100,,,,,0,3,,,,1,1,,,,,,,,,250,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,3 0,0,1,,,0,,0,0.25,,,2,25
+Value,1,,1,,5,Gray+Dist_Ampl,Std,0,0,0,0,1,4 323 6 245,1000,100,500,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,250,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,3 0,0,1,,,0,,0,0.25,,,2,25
+Value,1,,2,,5,Dist,HDR,,,0,0,1,4 363 6 245,500,2000,100,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Value,1,,3,,10,DCS,Std,,,0,0,1,4 363 6 245,500,2000,100,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Value,1,,1,,40,Gray+Dist_Ampl,Std,0,0,0,0,1,4 323 6 245,1000,100,500,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,250,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,3 0,0,1,,,0,,0,0.25,,,2,25
+Value,1,,4,,10,Dist_Ampl,Std,,,1,1,1,4 363 6 245,500,2000,100,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Value,1,,5,,10,DCS,Std,,,0,0,1,4 363 6 245,500,2000,100,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Value,1,,6,,10,Gray+DCS,Std,,,0,0,1,4 363 6 245,500,2000,100,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Value,1,,7,,10,Dist,Std,,,1,1,0,4 363 6 245,500,2000,100,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Value,1,,8,,10,Ampl,Std,,,0,1,0,4 363 6 245,500,2000,100,50,0,1,9,0.1,0,0,1,0,0,1,0,0,0,2,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Command Group,,,,NonServer,NonServer,,,,,Binning and Reduction,Binning and Reduction,Distance calculation,ROI,Integration Time ,Integration Time ,Integration Time ,TOF,Shutter,Modulation,NonServer,NonServer,NonServer,NonServer,Data validation,TOF,Runtime image correction,Data validation,Runtime image correction,TOF,"TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)",Change operating mode,Distance calculation,Distance calculation,Illumination,TOF distance and amplitude images,Grayscale image,TOF DCS images,TOF distance and amplitude images,TOF distance and amplitude images,No. DCS,Video mode handling,Video mode handling,Register read,Register write into EPROM,"DRNU man. control
+f.egg. 1 dll step",Register write ,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,"TOF calibration
+(DRNU)","Grayscale calibra-
+tion and correction
+(DSNU/PRNU)","Grayscale calibra-
+tion and correction
+(DSNU/PRNU)","Grayscale calibra-
+tion and correction
+(DSNU/PRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","Grayscale calibra-
+tion and correction
+(DSNU/PRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","TOF calibration
+(DRNU)","Show DRNU cali-
+bration values",NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,NonServer,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,server.c,Register Info,Temperature,Runtime image correction,Chip information,Chip information,TOF,Modulation,TOF,Chip information,Temperature,Runtime image correction,Distance calculation,Distance calculation,TOF,Image,Image,Image,Binning and Reduction,Server version,"Kalman filter
+- on distance level
+- before
+pattern filter","Kalman filter
+- on distance level
+- before
+pattern filter","Kalman filter
+- on distance level
+- before
+pattern filter","Kalman filter
+- on distance level
+- before
+pattern filter","Kalman filter
+- on distance level
+- before
+pattern filter","Kalman filter
+- on distance level
+- before
+pattern filter"
+Description,,,,"How many epochs are there, 1 is minimum and default",in each segment; fill out as many columns to right as number of epochs,,,,,"Enables or disables the vertical binning.
+Returns int16 the state of vertical binning.
+Default: enableVerticalBinning 0.","Enables or disables the horizontal binning.
+Returns int16 the state of horizontal binning.
+Default: enableHorizontalBinning 0.","Enables or disables Pi-Delay matching.
+Returns state of Pi delay.
+Default: enablePiDelay 1","Sets the ROI (Region of Interest) and updates the pointers to
+the DDR memory.
+topLeftX x coordinate of the top left point (0 - 322), always
+less than bottomRightX, must be even.
+bottomRightX x coordinate of the bottom right point (5 - 327),
+always greater than topLeftX, must be odd.
+topLeftY y coordinate of the top left point (0 - 124), always
+less than bottomRightY, must be even.
+bottomRightY y coordinate of the bottom right point (1-125),
+always greater than topLeftY, must be odd.
+Returns On success, ( int16) 0, on error -1
+Default (epc660/epc502):  setROI 4 323 6 125.","Sets the value of the integration time in microseconds for the
+TOF mode.
+Returns on success (int16) 0, on error -1.
+Default: setIntegrationTime2D 5000.","Sets the value of the integration time in microseconds for the
+TOF HDR mode.
+Returns on success (int16) 0, on error -1.
+Default: setIntegrationTime2D 5000.","Sets the value of the integration time in microseconds for the
+GRAYSCALE mode.
+Returns on success (int16) 0, on error -1.
+Default: setIntegrationTime2D 5000.","Sets the minimum amplitude for the calculation of the Distance
+(distance will be set to >LOW_AMPLITUDE if min amplitude is
+higher than measured value).
+Returns int16 value of the minimum Amplitude.
+Default: setMinAmplitude 0.","0 ? Shutter is triggered by I2C SW shutter command
+1 ? Shutter is triggered by Beagle Bone GPIO HW Shutter
+2 ? provide an external shutter signal (Beagle Bone GPIO HW
+shutter is set as INPUT)  Should be in 2.13 code","Sets the modulation frequency.
+Input param index modulation frequency index.
+Returns On success, (int16) 0, on error -1.
+Default: setModulationFrequency 1.
+Note usage with server:
+- set the modulation frequency to 625kHz -> setModulation-
+Frequency 5 .....
+- set the modulation frequency to 10MHz -> setModulationFre-
+quency 1
+- set the modulation frequency to 20MHz -> setModulationFre-
+quency 0.",Value in cm,,,,"Enables or disables adc overflow detection.
+Returns int16 state.
+Default: enableAdcOverflow 0.","Enables or disables the default offset.
+Take manual offset -> enableDefaultOffset 0.
+Returns int16 state.
+Default: enableDefaultOffset 1.","Enables or disables replacing the value of bad pixels with the
+value of a neighbour.
+Returns int16 state. Not sure where this is done.","Enables or disables saturation detection.
+Returns int16 state.
+Default: enableSaturation 0.","Enables or disables ABS.
+Returns int16 the state of the ABS.
+Default: enableABS 1.","Sets the offset in cm.
+Returns int16 offset in cm.
+Default: Default offset 0 cm.","Enable / disable ambient light compensation.
+Returns int16 state.","Enable / disable DRNU correction.
+Returns int16 state.","Enable / disable temperature compensation.
+Returns int16 state.","Loads a config for the operating mode with the given index into
+registers, enables or disables the illumination and updates
+pointers to the DDR memory.
+Returns int16 index of loaded config.
+Default: loadConfig 1 (TOF).","Enables or disables Dual MGX Motion blur.
+Input state 1 for enable, 0 - for disable.
+Returns int16 state of dual MGX.
+Default enableDualMGX 0.","Enables or disables Dual MGX HDR.
+Input state 1 for enable, 0 - for disable.
+Returns int16 state of dual HDR.
+Default enableHDR 0.","Enables / disables the illumination board.
+Returns on success 0 (in16), on error -1. By default turned on, loadConfig turns off if needed","Gets the calculated amplitudes. The amplitude values will be
+between 0 and 2047 LSB.
+Returns the data array (uint16_t values) depends on mode and
+ROI.","Gets a GRAYSCALE picture. The values will be between 2048
+and 4095 LSB.
+Returns the data (uint16_t values) depends on mode and ROI
+Warnings:
+- make sure you are in the GRAYSCALE mode (loadConfig 0)
+else you get the DCSs
+- if the grayscale picture uses mgb (default = mga) for acquir-
+ing the picture the return range will be 0 - 2047 LSB.","Gets all the DCSs depending on the mode. The values will be
+between 0 - 4095 LSB.
+Returns the data array (uint16_t values) depends on mode and
+ROI
+Warning:
+- make sure you are in THREED mode (loadConfig 1) else you
+get a single grayscale image","Gets the calculated distances and amplitudes (first all distance,
+then all amplitude values).
+Check apiGetDistance / apiGetAmplitude for more information.
+Returns the data array(uint16_t values) depends on mode and
+ROI.","Gets the calculated distances. The distance values will be be-
+tween 0 and 30000 LSB (0 - 2Pi).
+If the minimum amplitude is set (>0) values with a lower ampli-
+tude will be set to LOW_AMPLITUDE.
+Returns the data array (uint16_t values) depends on mode and
+ROI.","Sets the number of acquired DCS frames manually. But this
+setting is done automatically by the selected acquisition mode. Should be in 2.13 code","Starts using threading for image acquisition and distance calcu-
+lation. It is useful for speed optimization.
+Returns  int16 state.","Stops using threading for image acquisition and distance calcu-
+lation.
+Returns int16  state.",Reads register at address ADDR (hex),"Write the 8 bit VAL into EPROM register at address  ADDR
+(hex).
+Returns int16 state.","Manual DLL control enable
+set dll to 1 step (delay: 1 x 2ns).
+Returns int16 state.","Write the 8 bit value VAL into register at address ADDR (hex).
+Returns int16 state.",Default 0,Default 100,Default 0,Default 10,Default 1,Default 0,Default 1,Default 3,Default 3,"Starts calibration (can take up to 30 minutes depending on the
+initial camera temperature)
+Set the integration time according to have an ToF amplitude
+around 1000 LSB.
+Returns int16 state.","Grayscale calibation needs the following two steps
+1. ?calibrateGrayscale 1?
+Saves a grayscale image (avaraged over 100 frames). The am-
+plitude should be around 1000LSB.
+2. ?calibrateGrayscale 0?
+Set the integration time to 0us before sending this command.
+This creates a dark image (DSNU) and calculates the PRNU.
+For this PRNU calculation, it's necessary to load the image
+from the 1. step (saved 1000LSB image).
+After these sequences, the grayscale calibration LUT is created
+and can be used.
+Returns int16 state.","Enable / disable grayscale PRNU correction.
+Returns int16 state.","Enable / disable grayscale DSNU correction.
+Returns int16 state.","Get speed of light m/s.
+Returns speed of light double value.",Hide error curve (uses client only). ,"Check if ambient light correction is enabled.
+Returns int16 state","Check if DRNU is calibrated and available
+Returns int16 state.","Check if grayscale correction is available.
+Returns int16 state","Check if temperature compensation is enabled.
+Returns int16 state.","Load temperature data array.
+Returns data int16 array[50].","Adjust the DRNU calibration step. Default is 3250 (32.5cm per
+DLL step) to trim the DRNU curve to become horizontal.
+Returns int16 data array[100]. First 50 elements ? distances.
+The next 50 elements ? temperatures.","Sets ambient light factor.
+Default value 250.
+Returns int16 state.","Number of averaged frames for DRNU calibration.
+Default Number: 25
+Returns int16 state.","Pause between frames during the DRNU calibration.
+Returns int16 state.","Repeat calibration until temperature difference from start of cal-
+ibration to the end is less than the argument","Sets speed of light m/s.
+Input double value.
+Default: 300000000.
+Returns int16 state.","This sets the temperature compensation coefficient.
+Default  Cm/K: 1.56131.
+Returns int16 state.","Show error curve.
+Returns int16 array[100]. 50 ? distances and 50? temperatures.",Log amplitude,Use csv file to log,Log distance ,Prefix of logged files,Log filtered distance,LSB format or MM format,,Where to store logged files widget_log,,,Default 1,Default 150,Default 0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Gets a dump of all registers.
+Returns int16 array[256] data read from the chip.","Reads the temperature values out of the ROI (dummy rows).
+Returns the averaged temperature  int16 (tr, tl, br, bl).
+The value will be ?C x 10  (421 -> 42.1 ?C).
+Warning offset / slope could be different per chip / has to be
+evaluated.","Gets int16 array with coordinates of bad pixels. Coordinates
+are index array:  l = y * width + x.
+""searchBadPixels"" has to be done first (reads from file).","Gets the chip information (IDs, types, versions).
+Returns chip information stored in int16 array[8].
+[0] -> IC_TYPE
+[1] -> IC_VERSION
+[2] -> ENGINEERING_ID
+[3] -> WAFER_ID
+[4] -> CHIP_ID
+[5] -> PART_TYPE
+[6] -> PART_VERSION.","Gets the IC_VERSION of the chip.
+Returns int16 variable.","Gets the minimum amplitude.
+Returns int16  minAmplitude minimum value of the amplitude.","The modulation frequencies depend on the clks. Getter for the
+modulation frequencies.
+Returns int array the 8 frequencies in kHz.","Gets the offset.
+Returns int16 offset in cm.","Gets the PART_VERSION of the chip.
+Returns int16 variable.","Reads the temperature values out of the ROI (dummy rows)
+and the illumination board (ADC BBB). The values will be
+?Cx10  (421 -> 42.1 ?C).
+Returns int16 array[6]: 4 chip and 2 illumination temperatures:
+[0] -> temp top left (chip)
+[1] -> temp top right (chip)
+[2] -> temp bottom left (chip)
+[3] -> temp bottom right (chip)
+[4] -> temp ADC4 (LED top)
+[5] -> temp ADC2 (LED bottom)","This command searches bad pixels on the chip.
+This command needs grayscale integration time set to 0.
+Returns on success (int16)  0, on error -1. Its there in calibration, and command widgets","Selects the modulation mode.
+Input params 0 for sinusoidal, 1- for PN.
+Returns int16 selected mode.
+Default: selectMode 0.","Selects the polynomial with the given index. Each camera has
+to use an unique PN polynomial.
+Input parameters:
+indexLSFR number of LSFR stages -> 1 = 14, 2 = 13...7 = 8.
+indexPolynomial index of the polynomial for the given LSFR
+stages (only 5 stored at the moment / 0-4).
+Returns int16 selected polynomial. Only if mod == PN","Sets the hysteresis for the amplitude (upper threshold will be
+minAmplitude and the lower threshold will be minAmplitude ?
+hysteresis).
+Input parameter the value of hysteresis.
+Returns int16  the value of the hysteresis.
+Default: setHysteresis 0.","Averages images over time.
+Input: number of pictures you want to average over.
+Returns: int16 number of pictures.
+Default: setImageAveraging 10.","Sets the difference between images threshold.
+Returns  int16 state. Not Implemented in client.","Averages images over space.
+Input:
+1 ? average four connectivity
+2 ? average eight connectivity.
+Returns int16 averaging mode. Not Implemented in client.","Sets the row reduction on the chip. Allowed values 0-3:
+0 ? Full, 1 ? Half, 2 ? Quarter, 3 ? One eighth.
+Returns int16 the value of the row reduction.
+Default: setRowReduction 0.","Get version of the server.
+Returns  int16 server version.","Disable Kalman filter
+Simple Kalman filter only with:
+K ? gain coefficient  (default = 0.1)
+Second Kalman filter with:
+Q (default = 2.0)
+R (? is determined during run time).
+Third Kalman filter with differential input with:
+K ? gain coefficient  (default = 0.1)
+Kdiff ? input diff gain (default = 0.1)
+Returns int16 state.","Set Kalman gain coefficient, default 0.1, option 1.
+Returns int16 state.","Set Kalman 3 differential input gain, default 0.1, option 1.
+Returns int16 state.","Sets numCheck for Kalman 1+2+3
+If this number of valid threshold checks is reached, the filter will
+be reset if the target has moved more than the threshold.
+Returns int16 state.","Set Kalman Q coefficient, default 2.0, option 2.
+Coefficient R is automatically determined from measurement
+noise.
+Returns int16 state.","Set signal step threshold in LSB to reset Kalman prediction, de-
+fault 500, option 1 and option 2.
+Returns int16 state."
