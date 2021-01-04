@@ -63,4 +63,4 @@ def read_input_config(args):
         x_max = z_max*np.sin(fov_x/360*np.pi)+width/2
     if args.x_min is None:
         x_min = -x_max
-    return x_max, x_min, y_max, y_min, z_max, z_min, range_max, range_min
+    return x_max, x_min, y_max, y_min, z_max, z_min, range_max, range_min, fov_x, fov_y
