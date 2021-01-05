@@ -5,20 +5,8 @@ import argparse
 import os
 from oyla.apps.utils import read_input_config
 from oyla.mvc.utils import  transformation3
-if __name__ == '__main__':
-        # note that some of the UI parameters are here. missing range_m* assuming that that comes from parameters.csv
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--input_dir",type = str,required = True)
-        parser.add_argument("--data_type",type = str,default = 'dist')
-        parser.add_argument("--transform_types", type = str, default = "cartesian")
-        parser.add_argument("--x_max",type = float, default = None)
-        parser.add_argument("--x_min",type = float, default = None)
-        parser.add_argument("--y_max",type = float, default = None)
-        parser.add_argument("--y_min",type = float, default = None)
-        
-        parser.add_argument("--z_min",type=int,default=None)
-        parser.add_argument("--z_max",type=int,default=None)
-        args = parser.parse_args()
+
+def depthmap_pcl(args):
         if args.data_type == 'dist':
                 depth_files = sorted(glob.glob(args.input_dir+'/dist_png/*.png'))
         elif args.data_type == 'phase':
@@ -41,3 +29,20 @@ if __name__ == '__main__':
             with open(os.path.join(output_data_folder_name,df.split('/')[-1].replace('png','xyz')),'w') as fp:
                 for __a in _a:
                     fp.write(str(__a[0])+' '+str(__a[1])+' '+str(__a[2])+'\n')
+
+if __name__ == '__main__':
+        # note that some of the UI parameters are here. missing range_m* assuming that that comes from parameters.csv
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--input_dir",type = str,required = True)
+        parser.add_argument("--data_type",type = str,default = 'dist')
+        parser.add_argument("--transform_types", type = str, default = "cartesian")
+        parser.add_argument("--x_max",type = float, default = None)
+        parser.add_argument("--x_min",type = float, default = None)
+        parser.add_argument("--y_max",type = float, default = None)
+        parser.add_argument("--y_min",type = float, default = None)
+        
+        parser.add_argument("--z_min",type=int,default=None)
+        parser.add_argument("--z_max",type=int,default=None)
+        args = parser.parse_args()
+        
+        depthmap_pcl(args)
