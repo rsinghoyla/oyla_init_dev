@@ -117,6 +117,10 @@ def read_write_oyla(args):
                 output_data_folder_name +='ym_'+str(args.y_min)
         if args.y_max is not None:
                output_data_folder_name +='yM_'+str(args.y_max)
+        if args.qp_ampl is not None:
+               output_data_folder_name +='_qpA_'+str(args.qp_ampl)
+        if args.qp_phase is not None:
+               output_data_folder_name +='_qpP_'+str(args.qp_phase)
 
 
 
@@ -130,8 +134,10 @@ def read_write_oyla(args):
                 #os.makedirs(os.path.join(output_data_folder_name,'dist_ampl_mat_16'))
                 #os.makedirs(os.path.join(output_data_folder_name,'dist_img_jpg'))
                 os.makedirs(os.path.join(output_data_folder_name,'dist_png'))
+                os.makedirs(os.path.join(output_data_folder_name,'phase_png'))
                 os.makedirs(os.path.join(output_data_folder_name,'ampl_png'))
                 os.makedirs(os.path.join(output_data_folder_name,'rgb_jpg'))
+                #os.makedirs(os.path.join(output_data_folder_name,'phase_ampl_png'))
                 #os.makedirs(os.path.join(output_data_folder_name,'rgb_jpg_orig'))
                 #os.makedirs(os.path.join(output_data_folder_name,'rgb_png'))
         else:
@@ -182,13 +188,33 @@ def read_write_oyla(args):
                         # AMPLITUDE_SATURATION thresholding should take care of the flags below; esp for pcl and removing data
                         raw_ampl = np.squeeze(frame[:,:,1])
                         raw_phase = np.squeeze(frame)[:,:,0]
+                        # if args.qp_phase is not None:
+                        #         qp_phase = args.qp_phase
+                        #         ind = np.where(raw_phase<65000)
+                        #         raw_phase = raw_phase.astype('float32')
+                        #         raw_phase[ind] = np.floor(raw_phase[ind]/qp_phase+0.5)*qp_phase
+                                
+            
+                        # if args.qp_ampl is not None:
+                        #         qp_ampl = args.qp_ampl
+                        #         ind = np.where(raw_ampl<65000)
+                        #         raw_ampl = raw_ampl.astype('float32')
+                        #         raw_ampl[ind] = np.floor(raw_ampl[ind]/qp_ampl+0.5)*qp_ampl
 
-                        #if args.rgb:
-                        rgb_img,raw_phase,raw_ampl = camera_calibrations(rgb=rgb_data,depth=raw_phase,ampl=raw_ampl,camera_version=camera_version)
-                        #if 'oyla_1_camera' in camera_version:
-                        height = raw_phase.shape[1]
-                        width = raw_phase.shape[0]
+                        #         # if qp_phase is not None or qp_ampl is not None:
+                        #         #         ind = np.where(np.logical_or(np.logical_or(raw_phase<phase_min, raw_phase>phase_max),np.logical_or(raw_ampl<ampl_min, raw_ampl>MAX_AMPLITUDE)))
+                        #         #         raw_phase[ind] = RAW_PHASE
+                        #         #         raw_ampl[ind] = RAW_AMPL
+                        #         #         indices['quantized_beyond_range'] = ind
+                        # #if args.rgb:
 
+                        ##CHANGES
+                        # rgb_img,raw_phase,raw_ampl = camera_calibrations(rgb=rgb_data,depth=raw_phase,ampl=raw_ampl,camera_version=camera_version)
+                        # #if 'oyla_1_camera' in camera_version:
+                        # height = raw_phase.shape[1]
+                        # width = raw_phase.shape[0]
+                        ##
+                        
                         if 'temporal_median_filter' in filter_params and int(filter_params['temporal_median_filter']):
                                 print('Doing temporal median filter')
                                 frame_offset = filter_params['temporal_median_filter_size']
@@ -220,12 +246,13 @@ def read_write_oyla(args):
                                         raw_ampl = results[1]
                                         rgb_img = rgb_array[frame_offset,:,:,:]                  
 
-                        print(rgb_img.shape, rgb_img.dtype)
+                        #print(rgb_img.shape, rgb_img.dtype)
                         #threshold raw phase and raw amplitude
                         filtered_phase, filtered_ampl, indices = threshold_filter(raw_phase = raw_phase, raw_ampl = raw_ampl, reflectivity_thresh= reflectivity_thresh,
                                                                                      range_max = range_max, range_min = range_min, ampl_min = ampl_min,
-                                                                                     filter_params = filter_params, ambiguity_distance = ambiguity_distance)
-
+                                                                                     filter_params = filter_params, ambiguity_distance = ambiguity_distance,
+                                                                                     qp_phase =args.qp_phase, qp_ampl = args.qp_ampl)
+                        
                         dist, _ = phase_to_distance(filtered_phase, ambiguity_distance)
                         # outside_range_indices = indices['amplitude_beyond_range']
                         # for k in indices.keys():
@@ -234,7 +261,56 @@ def read_write_oyla(args):
                         #                                          np.concatenate((outside_range_indices[1], indices[k][1])))
                         outside_range_indices = indices['filtered_beyond_range']
 
+                        ## CHANGES
+                        # if args.rgb:
+                        #         img = rgb_img.copy()
 
+                        #         img = cv2.resize(img,(height,width))
+                        #         if args.reflectivity_enhancement:
+                        #                 img = do_reflectivity_enhancement(img, filtered_phase, filtered_ampl, indices)
+                        #         plt.imsave(os.path.join(output_data_folder_name,'rgb_jpg')+'/oyla_'+str(current_frame).zfill(4)+'.jpg',
+                        #                    img)
+                        ##
+                                # plt.imsave(os.path.join(output_data_folder_name,'rgb_png')+'/oyla_'+str(current_frame).zfill(4)+'.png',
+                                #            img)
+                                # plt.imsave(os.path.join(output_data_folder_name,'rgb_jpg_orig')+'/oyla_'+str(current_frame).zfill(4)+'.jpg',
+                                #            rgb_img)
+
+
+                        # no_data_indices = indices['amplitude_saturated']
+                        # for k in indices.keys():
+                        #         if k != 'amplitude_saturated':
+                        #                 no_data_indices = (np.concatenate((no_data_indices[0], indices[k][0])),
+                        #                                    np.concatenate((no_data_indices[1], indices[k][1])))
+                        #         print('rerr',k,no_data_indices[0].shape)
+                        # __n = np.ravel_multi_index(no_data_indices,dist.shape)
+                        # print('no_data',__n.shape,np.where(filtered_phase==0)[0].shape)
+
+                        for k in indices.keys():
+                                print(k,indices[k][0].shape)
+                        no_data_indices = outside_range_indices
+                        #x, y, z,rcm = transformation3(range_array, args.transform_types, args.fov)
+                        x, y, z,rcm = transformation3(dist,args.transform_types,fov_x, fov_y, no_data_indices)
+                        
+                        x, y, z, rcm, filtered_phase,threshold_indices = threshold_coordinates(x, y, z, rcm, x_max = args.x_max, x_min = args.x_min,
+                                                                             y_max = args.y_max, y_min = args.y_min, img = filtered_phase)
+                        filtered_ampl[threshold_indices] = 0
+                        dist[threshold_indices] = 0
+                        #If this is going to be used then we need to take care of threshold_indices by concatenating with outside_range_indices
+                        outside_range_indices = (np.concatenate((outside_range_indices[0], threshold_indices[0])),
+                                                 np.concatenate((outside_range_indices[1], threshold_indices[1])))
+                        
+                        img = convert_matrix_image(dist,cmap= 'jet_r', clim_min=range_min, clim_max=range_max,
+                                                           saturation_indices = indices['amplitude_saturated'],
+                                                           no_data_indices = indices['amplitude_low'],
+                                                           outside_range_indices = outside_range_indices)
+
+                        
+                        rgb_img,filtered_phase,filtered_ampl = camera_calibrations(rgb=rgb_data,depth=filtered_phase,ampl=filtered_ampl,camera_version=camera_version)
+                        dist,_ = phase_to_distance(filtered_phase, ambiguity_distance)
+                        #if 'oyla_1_camera' in camera_version:
+                        height = filtered_phase.shape[1]
+                        width = filtered_phase.shape[0]
                         if args.rgb:
                                 img = rgb_img.copy()
 
@@ -243,43 +319,36 @@ def read_write_oyla(args):
                                         img = do_reflectivity_enhancement(img, filtered_phase, filtered_ampl, indices)
                                 plt.imsave(os.path.join(output_data_folder_name,'rgb_jpg')+'/oyla_'+str(current_frame).zfill(4)+'.jpg',
                                            img)
-                                #plt.imsave(os.path.join(output_data_folder_name,'rgb_png')+'/oyla_'+str(current_frame).zfill(4)+'.png',
-                                #           img)
-                                #plt.imsave(os.path.join(output_data_folder_name,'rgb_jpg_orig')+'/oyla_'+str(current_frame).zfill(4)+'.jpg',
-                                #           rgb_img)
-
-                        # no_data_indices = indices['amplitude_saturated']
-                        # for k in indices.keys():
-                        #         if k != 'amplitude_saturated':
-                        #                 no_data_indices = (np.concatenate((no_data_indices[0], indices[k][0])),
-                        #                                    np.concatenate((no_data_indices[1], indices[k][1])))
-                        no_data_indices = outside_range_indices
-                        #x, y, z,rcm = transformation3(range_array, args.transform_types, args.fov)
-                        x, y, z,rcm = transformation3(dist,args.transform_types,fov_x, fov_y, no_data_indices)
-                        x, y, z, rcm, filtered_phase,threshold_indices = threshold_coordinates(x, y, z, rcm, x_max = args.x_max, x_min = args.x_min,
-                                                                  y_max = args.y_max, y_min = args.y_min, img = dist)
-                        #thresholded_ampl[np.where(dist)==0] = 0
-                        filtered_ampl[threshold_indices] = 0
-                        dist[threshold_indices] = 0
-                        outside_range_indices = (np.concatenate((outside_range_indices[0], threshold_indices[0])),
-                                                 np.concatenate((outside_range_indices[1], threshold_indices[1])))
-                        img = convert_matrix_image(dist,cmap= 'jet_r', clim_min=range_min, clim_max=range_max,
-                                                           saturation_indices = indices['amplitude_saturated'],
-                                                           no_data_indices = indices['amplitude_low'],
-                                                           outside_range_indices = outside_range_indices)
+                                
                         distmm16 = np.uint16(dist*10)
-                        ampl16 = np.uint16(filtered_ampl)
+                        #ampl16 = np.uint16(filtered_ampl)
+                        #fp16 = np.uint16(filtered_phase)
+                        
                         #scipy.io.savemat(os.path.join(output_data_folder_name,'dist_ampl_mat')+'/oyla_'+str(current_frame).zfill(4)+'.mat',{'dist':dist,'ampl':thresholded_ampl},do_compression=True)
                         #scipy.io.savemat(os.path.join(output_data_folder_name,'dist_ampl_mat_16')+'/oyla_'+str(current_frame).zfill(4)+'.mat',{'dist':distmm16,'ampl':ampl16},do_compression=True)               
                         #plt.imsave(os.path.join(output_data_folder_name,'dist_img_jpg')+'/oyla_'+str(current_frame).zfill(4)+'.jpg',
                         #          img)
 
                         cv2.imwrite(os.path.join(output_data_folder_name,'dist_png')+'/oyla_'+str(current_frame).zfill(4)+'.png',distmm16)
-                        cv2.imwrite(os.path.join(output_data_folder_name,'ampl_png')+'/oyla_'+str(current_frame).zfill(4)+'.png',ampl16)
-                        # ToDo: why is this needed?
+                        cv2.imwrite(os.path.join(output_data_folder_name,'phase_png')+'/oyla_'+str(current_frame).zfill(4)+'.png',filtered_phase.astype('uint16'))
+                        cv2.imwrite(os.path.join(output_data_folder_name,'ampl_png')+'/oyla_'+str(current_frame).zfill(4)+'.png',filtered_ampl.astype('uint16'))
 
 
 
+                        # A = np.zeros_like(filtered_phase,dtype=np.uint8)
+                        # B = np.zeros_like(filtered_phase,dtype=np.uint8)
+                        # C = np.zeros_like(filtered_phase,dtype=np.uint8)
+                        # _filtered_ampl = filtered_ampl.copy()
+                        # _filtered_ampl[_filtered_ampl>511]=511
+                        # for i in range(filtered_phase.shape[0]):
+                        #         for j in range(filtered_phase.shape[1]):
+                        #                 a = format(filtered_phase[i,j].astype('uint16'), '015b')[::-1]+format(_filtered_ampl[i,j].astype('uint16'), '09b')
+                        #                 A[i,j] = int(a[:8][::-1],2) #LSB of phase
+                        #                 B[i,j] = int(a[8:16][::-1],2) #MSB of phase +MSB of ampl
+                        #                 C[i,j] = int(a[16:],2) #LSB of ampl
+                        # img = cv2.merge((B,C,A))
+                        # _img = cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
+                        # cv2.imwrite(os.path.join(output_data_folder_name,'phase_ampl_png')+'/oyla_'+str(current_frame).zfill(4)+'.png',_img)
                         # _a = np.c_[x,y,z]
                         # _a = _a.astype('single')
 
@@ -314,7 +383,8 @@ if __name__ == '__main__':
         parser.add_argument('--no_forward_sync',action="store_true")
         parser.add_argument('--reflectivity_enhancement', action = "store_true")
         parser.add_argument("--number_images",type=int, default = 0)
-
+        parser.add_argument("--qp_phase",type=int, default = None)
+        parser.add_argument("--qp_ampl",type=int, default = None)
         args = parser.parse_args()
         print(args.no_forward_sync, args.reflectivity_enhancement)
 
